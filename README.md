@@ -1,7 +1,13 @@
 This is a Scrapy webcrawler that I built to scrape articles from Bloomberg.com. It's deployed using Docker and is linked to a MongoDB container. Assuming you have docker, you can try it out with the following code:
 
+    # pulls the image from Docker Hub
+
     docker pull tsaed/bloombergscraper
-    docker-compose run web scrapy crawl bloomberg -a section=stocks -a depth=10
+
+    # section allows you to specify the section of Bloomberg.com you want to scrape, i.e. Stocks, Commodities, etc.
+    # n_pages is simply how many pages, starting from page 1, that you want to scrape
+
+    docker-compose run web scrapy crawl bloomberg -a section=stocks -a n_pages=10
 
     # if you want to check out what's in the database, execute this:
 

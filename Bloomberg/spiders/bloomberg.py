@@ -8,9 +8,9 @@ class BloombergSpider(Spider):
     name = 'bloomberg'
     start_urls = ['https://www.bloomberg.com/search?query={}&page={}']
 
-    def __init__(self, section='stocks', depth=5, *args, **kwargs):
+    def __init__(self, section='stocks', n_pages=5, *args, **kwargs):
         super(BloombergSpider, self).__init__(self, *args, **kwargs)
-        self.depth = int(depth)
+        self.n_pages = int(n_pages)
         self.section = section
         self.article_list = '//h1[@class="search-result-story__headline"]'+\
                             '/a[not(contains(@href,"/videos"))'+\
@@ -31,7 +31,7 @@ class BloombergSpider(Spider):
 
         current_page = int(re.sub(r'^.*&page=(\d+).*$',r'\1',response.url)) + 1
 
-        if current_page <= self.depth:
+        if current_page <= self.n_pages:
             yield Request(self.start_urls[0].format(self.section, current_page), callback=self.parse)
 
 
