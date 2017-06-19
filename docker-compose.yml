@@ -1,0 +1,17 @@
+version: '2'
+services:
+
+  web:
+    build: .
+    image: tsaed/bloombergscraper
+    command: scrapy crawl bloomberg -a section=markets
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/crawler
+    links:
+    - db
+  db:
+    image: mongo:3.0.2
+    volumes:
+      - .:/data/db
