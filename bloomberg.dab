@@ -1,0 +1,30 @@
+{
+  "Services": {
+    "db": {
+      "Image": "mongo@sha256:c08167faf2e2d71bbf2ea95577d3d151e411f7264c6cae40d23914c916b449ca", 
+      "Networks": [
+        "default"
+      ]
+    }, 
+    "web": {
+      "Args": [
+        "scrapy", 
+        "crawl", 
+        "bloomberg", 
+        "-a", 
+        "section=markets"
+      ], 
+      "Image": "tsaed/bloombergscraper@sha256:b388aff3539720b3afc6f81a5868ee4f14910c1d28f1305e9604d05c11c08ee4", 
+      "Networks": [
+        "default"
+      ], 
+      "Ports": [
+        {
+          "Port": 5000, 
+          "Protocol": "tcp"
+        }
+      ]
+    }
+  }, 
+  "Version": "0.1"
+}
