@@ -1,8 +1,9 @@
 This is a Scrapy webcrawler that I built to scrape articles from Bloomberg.com. It's deployed using Docker and is linked to a MongoDB container. Assuming you have docker, you can try it out with the following code:
 
-    # pulls the image from Docker Hub
+    #pull the repo from Github and build images
 
-    docker pull tsaed/bloombergscraper
+    git clone https://github.com/ctdavis/bloombergscraper.git
+    cd bloombergscraper && docker-compose build
 
     # section allows you to specify the section of Bloomberg.com you want to scrape, i.e. Stocks, Commodities, etc.
     # n_pages is simply how many pages, starting from page 1, that you want to scrape
